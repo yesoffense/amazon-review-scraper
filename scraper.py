@@ -9,7 +9,7 @@ ssl._create_default_https_context = ssl._create_unverified_context
 #needs ssl handshake
 
 pageNumber = 0
-lastPage = 3
+lastPage = 6 #enter last pagenumber
 
 # Write csv headers before scraping
 with open(file_name, 'a') as csv_file:
@@ -18,7 +18,9 @@ with open(file_name, 'a') as csv_file:
 
 while pageNumber <= lastPage:
     pageNumber = pageNumber + 1
-    url = 'https://www.amazon.com/Coup-d%C3%89tat-Practical-Edward-Luttwak/product-reviews/0674175476/ref=cm_cr_arp_d_paging_btm_3?ie=UTF8&reviewerType=all_reviews%3FpageNumber%3D3&pageNumber=' + str(pageNumber)
+    print('youre at pagenumber: ',pageNumber) #status in command line
+    #enter amazon link with same format as:
+    url = 'https://www.amazon.com/Yale-Assure-Button-Polished-YRD216NR605/product-reviews/B071CNVC2Z/ref=cm_cr_dp_d_acr_sr?ie=UTF8&reviewerType=' + str(pageNumber)
 
     req = urllib.request.Request(
         #.Request is a BS built-in function
