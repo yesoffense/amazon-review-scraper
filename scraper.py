@@ -3,6 +3,8 @@ from bs4 import BeautifulSoup
 import csv
 import ssl
 
+file_name = str(input('Enter output filename. Remember .csv '))
+
 ssl._create_default_https_context = ssl._create_unverified_context
 #needs ssl handshake
 
@@ -10,7 +12,7 @@ pageNumber = 0
 lastPage = 3
 
 # Write csv headers before scraping
-with open('index.csv', 'a') as csv_file:
+with open(file_name, 'a') as csv_file:
     writer = csv.writer(csv_file, delimiter=',')
     writer.writerow(["stars", "headline", "full_review"])
 
@@ -38,6 +40,6 @@ while pageNumber <= lastPage:
         full_review = review.find('span', attrs = {'class': 'review-text'}).text.strip()
 
         # open a csv file with append, so old data will not be erased
-        with open('index.csv', 'a') as csv_file:
+        with open(file_name, 'a') as csv_file:
             writer = csv.writer(csv_file, delimiter=',')
             writer.writerow([stars, headline, full_review])
